@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package category.v1;
+
+option go_package = "product/api/category/v1;v1";
+option objc_class_prefix = "APICategoryV1";
+
+enum ErrorReason {
+  CATEGORY_NOT_FOUND = 0;
+  CATEGORY_EXISTS = 1;
+}

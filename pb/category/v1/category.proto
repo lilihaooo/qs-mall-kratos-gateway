@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package category.v1;
+
+option go_package = "product/api/category/v1;v1";
+
+service category {
+  rpc CategoryTreeList (CategoryListRequest) returns (CategoryListReply) {}
+  rpc CategoryCreate (CategoryCreateRequest) returns (Reply) {}
+  rpc CategoryDelete (CategoryDeleteRequest) returns (Reply) {}
+  rpc CategoryUpdate (CategoryUpdateRequest) returns (Reply) {}
+}
+
+
+message CategoryListRequest {
+}
+
+message CategoryCreateRequest {
+  string name = 1;
+  int64 parentCid = 2;
+  int32 catLevel = 3;
+  int32 showStatus = 4;
+  int32 sort = 5;
+}
+
+message CategoryDeleteRequest {
+  int64 id = 1;
+}
+
+message CategoryUpdateRequest {
+  int32 showStatus = 1;
+  int32 sort = 2;
+}
+
+message CategoryListReply {
+  int64 code = 1;
+  string message = 2;
+  repeated  CategoryTree data = 3;
+}
+
+
+message CategoryTree {
+  int64 id = 1;
+  string name = 2;
+  int64 parentCid = 3;
+  int32 catLevel = 4;
+  int32 showStatus = 5;
+  int32 sort = 6;
+  string icon = 7;
+  string productUnit = 8;
+  int64 productCount = 9;
+  string createdAt = 10;
+  string updatedAt = 11;
+  string deletedAt = 12;
+  repeated CategoryTree children = 13;
+}
+
+message Reply {
+  int64 code = 1;
+  string message = 2;
+}
+
+
