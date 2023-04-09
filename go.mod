@@ -10,7 +10,6 @@ require (
 	github.com/google/wire v0.5.0
 	go.etcd.io/etcd/client/v3 v3.5.7
 	go.uber.org/automaxprocs v1.5.1
-	google.golang.org/genproto v0.0.0-20220524023933-508584e28198
 	google.golang.org/grpc v1.50.1
 	google.golang.org/protobuf v1.28.0
 )
@@ -55,6 +54,7 @@ require (
 	golang.org/x/sys v0.5.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
 	golang.org/x/tools v0.1.12 // indirect
+	google.golang.org/genproto v0.0.0-20220524023933-508584e28198 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0 // indirect
 )

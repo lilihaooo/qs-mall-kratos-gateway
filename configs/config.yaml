@@ -1,7 +1,7 @@
 server:
   http:
     addr: 127.0.0.1:2222
-    timeout: 10s
+    timeout: 1s
 etcd:
   url: 127.0.0.1:2379
-  timeout: 10s
+  timeout: 1s

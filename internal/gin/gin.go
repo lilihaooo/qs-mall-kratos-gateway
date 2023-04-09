@@ -12,12 +12,10 @@ type Gin struct {
 	Router *gin.Engine
 }
 
-func NewGin(ProductHandler *api.ProductHandler, CategoryHandler *api.CategoryHandler) *Gin {
+func NewGin(CategoryHandler *api.CategoryHandler) *Gin {
 	router := gin.Default()
 	// 使用kratos中间件
 	router.Use(kgin.Middlewares(recovery.Recovery()))
-	router.POST("/product", ProductHandler.Add)
-
 	router.GET("/category", CategoryHandler.CategoryTreeList)
 	return &Gin{
 		Router: router,

@@ -2,4 +2,4 @@ package api
 
 import "github.com/google/wire"
 
-var ProviderSet = wire.NewSet(NewProductHandler, NewCategoryHandler)
+var ProviderSet = wire.NewSet(NewCategoryHandler)

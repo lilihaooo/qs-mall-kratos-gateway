@@ -8,7 +8,6 @@ package main
 
 import (
 	"gateway/internal/api"
-	"gateway/internal/biz"
 	"gateway/internal/client"
 	"gateway/internal/conf"
 	"gateway/internal/gin"
@@ -28,21 +27,13 @@ import (
 // wireApp init kratos application.
 func wireApp(etcd *conf.Etcd, confServer *conf.Server, logger log.Logger) (*kratos.App, func(), error) {
 	etcdRegistry := registry.NewEtcdRegistry(etcd)
-	productClient, err := client.NewProduct_0Client(etcdRegistry, logger)
-	if err != nil {
-		return nil, nil, err
-	}
-	productBiz := biz.NewProductBiz(logger, productClient)
-	productService := service.NewProductService(productBiz)
-	productHandler := api.NewProductHandler(productService)
 	categoryClient, err := client.NewProductClient(etcdRegistry, logger)
 	if err != nil {
 		return nil, nil, err
 	}
-	categoryBiz := biz.NewCategoryBiz(logger, categoryClient)
-	categoryService := service.NewCategoryService(categoryBiz)
+	categoryService := service.NewCategoryService(logger, categoryClient)
 	categoryHandler := api.NewCategoryHandler(categoryService)
-	ginGin := gin.NewGin(productHandler, categoryHandler)
+	ginGin := gin.NewGin(categoryHandler)
 	httpServer := server.NewHTTPServer(confServer, logger, ginGin)
 	app := newApp(logger, etcdRegistry, httpServer)
 	return app, func() {
